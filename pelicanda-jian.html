@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="utf-8">
+	<title>pelican搭建 — mamimabihoo</title>
+	<meta name="description" content="Title: pelican搭建; Date: 2020-11-20; Author: Joker lau">
+	<meta name="author" content="Joker Lau">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+	<!--[if lt IE 9]>
+		<script src="/theme/html5.js"></script>
+		<![endif]-->
+	<link href="/theme/css/ipython.css" rel="stylesheet">
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/simplex/bootstrap.min.css" rel="stylesheet">
+	<link href="/theme/css/local.css" rel="stylesheet">
+	<link href="/theme/css/pygments.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+	<div class="page-header">
+		<h1><a href="/">mamimabihoo</a>
+			<br>	</div>
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+<div class="article" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="text-center article-header">
+		<h1 itemprop="name headline" class="article-title">pelican搭建</h1>
+		<span itemprop="author" itemscope itemtype="http://schema.org/Person">
+			<h4 itemprop="name">Joker lau</h4>
+		</span>
+		<time datetime="2020-11-20T16:21:00+08:00" itemprop="datePublished">五 20 十一月 2020</time>
+	</div>
+	<div>
+		Category:
+		<span itemprop="articleSection">
+			<a href="/category/home.html" rel="category">Home</a>
+		</span>
+	</div>
+ 
+	<div>
+		Tags:
+		<span itemprop="keywords">
+			<a href="/tag/reading.html" rel="tag">reading</a>
+		</span>
+	</div>
+	<div itemprop="articleBody" class="article-body"><h4>使用pelican搭建主页</h4>
+<h5>pelican介绍</h5>
+<p>pelican是一个使用python实现的静态网页生成器。可以搭配GitHubPages作为个人博客使用。</p>
+<h5>准备</h5>
+<ol>
+<li>安装python</li>
+<li>安装<a href="https://pypi.org/project/pip/">pip</a><sup id="fnref:pip"><a class="footnote-ref" href="#fn:pip">1</a></sup></li>
+<li>安装pelican</li>
+<li>安装markdown</li>
+</ol>
+<h5>过程</h5>
+<ol>
+<li>创建一个文件目录，进入并运行</li>
+</ol>
+<p><code>pelican-quickstart</code> 根据提示快速构建一个pelican的文件系统。</p>
+<ol>
+<li>
+<p>完成后会生成相应的文件（windows系统不支持make命令）。</p>
+</li>
+<li>
+<p>可以从Github上获取喜欢的主题，拉取并配置。</p>
+</li>
+</ol>
+<p><code>git clone https://github.com/getpelican/pelican-themes</code></p>
+<p><code>THEME="{theme-path}"</code></p>
+<h6>效果图</h6>
+<p><img alt="waterspill效果图" src="/images/aboutwilson.jpg"></p>
+<h5>参考文档</h5>
+<ol>
+<li>
+<p><a href="https://docs.getpelican.com/en/latest/pelican-themes.html">主题文档</a></p>
+</li>
+<li>
+<p><a href="https://docs.getpelican.com/en/3.3.0/getting_started.html#writing-content-using-pelican">GettingStarted</a></p>
+</li>
+</ol>
+<hr>
+<div class="footnote">
+<hr>
+<ol>
+<li id="fn:pip">
+<p>python包管理工具&#160;<a class="footnote-backref" href="#fnref:pip" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div></div>
+	<hr>
+	<h2>Comments</h2>
+</div>
+		</div>
+	</div> 	<!-- <hr> -->
+</div> <!-- /container -->
+<footer class="aw-footer bg-danger">
+	<div class="container"> <!-- footer -->
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1">
+				<div class="row">
+					<div class="col-md-3">
+						<h4>Navigation</h4>
+						<ul class="list-unstyled my-list-style">
+							<li><a href="">mamimabihoo</a></li>
+							<li><a href="/pages/guan-yu.html"><i class="fa fa-关于 "></i> 关于</a></li>
+							<li><a href="/pages/lian-xi.html"><i class="fa fa-联系 "></i> 联系</a></li>
+						</ul>
+					</div>
+					<div class="col-md-3">
+						<h4>Author</h4>
+						<ul class="list-unstyled my-list-style">
+							<li><a href="#">You can add links in your config file</a></li>
+							<li><a href="#">Another social link</a></li>
+						</ul>
+					</div>
+					<div class="col-md-3">
+						<h4>Categories</h4>
+						<ul class="list-unstyled my-list-style">
+							<li><a href="/category/home.html">Home (2)</a></li>
+						</ul>
+					</div>
+					<div class="col-md-3">
+						<h4>Links</h4>
+						<ul class="list-unstyled my-list-style">
+							<li><a href="https://getpelican.com/">Pelican</a></li>
+							<li><a href="https://www.python.org/">Python.org</a></li>
+							<li><a href="https://palletsprojects.com/p/jinja/">Jinja2</a></li>
+							<li><a href="#">You can modify those links in your config file</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+<div class="container">
+	<div class="row">
+		<div class="col-md-12 text-center center-block aw-bottom">
+			<p>&copy; Joker Lau 2016</p>
+			<p>Powered by Pelican</p>
+		</div>
+	</div>
+</div>
+<!-- JavaScript -->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+	$("div.collapseheader").click(function () {
+		$header = $(this).children("span").first();
+		$codearea = $(this).children(".input_area");
+		$codearea.slideToggle(500, function () {
+			$header.text(function () {
+				return $codearea.is(":visible") ? "Collapse Code" : "Expand Code";
+			});
+		});
+	});
+});
+</script>
+</body>
+</html>
