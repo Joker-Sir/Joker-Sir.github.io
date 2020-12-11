@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="utf-8">
+	<title>shell — mamimamihoo</title>
+	<meta name="description" content="Title: shell; Date: 2020-12-11; Author: Joker lau">
+	<meta name="author" content="Joker">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+	<!--[if lt IE 9]>
+		<script src="/theme/html5.js"></script>
+		<![endif]-->
+	<link href="/theme/css/ipython.css" rel="stylesheet">
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/simplex/bootstrap.min.css" rel="stylesheet">
+	<link href="/theme/css/local.css" rel="stylesheet">
+	<link href="/theme/css/pygments.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+	<div class="page-header">
+		<h1><a href="/">mamimamihoo</a>
+			<br>	</div>
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+<div class="article" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="text-center article-header">
+		<h1 itemprop="name headline" class="article-title">shell</h1>
+		<span itemprop="author" itemscope itemtype="http://schema.org/Person">
+			<h4 itemprop="name">Joker lau</h4>
+		</span>
+		<time datetime="2020-12-11T11:21:00+08:00" itemprop="datePublished">周五 11 十二月 2020</time>
+	</div>
+	<div>
+		Category:
+		<span itemprop="articleSection">
+			<a href="/category/home.html" rel="category">Home</a>
+		</span>
+	</div>
+ 
+	<div>
+		Tags:
+		<span itemprop="keywords">
+			<a href="/tag/reading.html" rel="tag">reading</a>
+		</span>
+	</div>
+	<div itemprop="articleBody" class="article-body"><p>[toc]</p>
+<h5>定义变量</h5>
+<h6>declare</h6>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1">#declare.sh</span>
+<span class="nb">declare</span> -i <span class="nv">a</span><span class="o">=</span><span class="m">1</span>
+<span class="nb">declare</span> -i <span class="nv">b</span><span class="o">=</span><span class="m">2</span>
+<span class="nb">declare</span> -i <span class="nv">c</span><span class="o">=</span><span class="m">3</span>
+<span class="nb">declare</span> -i <span class="nv">d</span><span class="o">=</span><span class="m">4</span>
+<span class="nb">echo</span> <span class="s2">&quot;the result is --&gt; </span><span class="nv">$a</span><span class="s2">*</span><span class="nv">$b</span><span class="s2">-</span><span class="nv">$c</span><span class="s2">+</span><span class="nv">$d</span><span class="s2">&quot;</span>
+<span class="nb">declare</span> -i f
+<span class="nv">f</span><span class="o">=</span><span class="nv">$a</span>*<span class="nv">$b</span>-<span class="nv">$c</span>+<span class="nv">$d</span>
+<span class="nb">echo</span> <span class="s2">&quot;the result is --&gt; </span><span class="nv">$f</span><span class="s2">&quot;</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="c1"># define a array</span>
+<span class="nb">declare</span> -a <span class="nv">array</span><span class="o">=(</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span><span class="o">)</span>
+<span class="nb">echo</span> <span class="si">${</span><span class="nv">array</span><span class="p">[2]</span><span class="si">}</span>
+</code></pre></div>
+
+<h6>read</h6>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1">#read.sh</span>
+<span class="nb">echo</span> <span class="s1">&#39;input two number and press Enter to plus them :&#39;</span>
+<span class="nb">read</span> num1 num2
+<span class="nb">echo</span> <span class="s2">&quot;fist number is </span><span class="nv">$num1</span><span class="s2"> , second number is </span><span class="nv">$num2</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;the result is :&quot;</span> <span class="p">;</span> expr <span class="nv">$num1</span> + <span class="nv">$num2</span>
+</code></pre></div>
+
+<h5>流程控制</h5>
+<h6>if</h6>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1">#if.sh</span>
+<span class="nb">echo</span> <span class="s1">&#39;Press y to continue!&#39;</span>
+<span class="nb">read</span> input
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$input</span> <span class="o">=</span> <span class="s2">&quot;y&quot;</span> <span class="o">]</span>
+<span class="k">then</span>
+<span class="nb">echo</span> <span class="s1">&#39;script is running!&#39;</span>
+<span class="k">else</span>
+<span class="nb">echo</span> <span class="s1">&#39;stop!&#39;</span>
+<span class="k">fi</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1">#if.sh</span>
+<span class="nb">echo</span> <span class="s1">&#39;I can say hello to you !&#39;</span>
+<span class="nb">read</span> input
+<span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$input</span><span class="s2">&quot;</span> <span class="o">=</span> <span class="s2">&quot;hello&quot;</span> <span class="o">]</span>
+<span class="k">then</span> 
+<span class="nb">echo</span> <span class="s2">&quot;hello , nice to meet you !&quot;</span>
+<span class="k">elif</span> <span class="o">[</span> -z <span class="s2">&quot;</span><span class="nv">$input</span><span class="s2">&quot;</span> <span class="o">]</span>
+<span class="k">then</span>
+<span class="nb">echo</span> <span class="s2">&quot;say something, please !&quot;</span>
+<span class="k">else</span> 
+<span class="nb">echo</span> <span class="s2">&quot;I do not know what you say ! but you can say hello to me !&quot;</span>
+<span class="k">fi</span>
+</code></pre></div>
+
+<h6>case</h6>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1">#case.sh</span>
+<span class="nb">echo</span> <span class="s1">&#39;Please Enter Your Number:&#39;</span>
+<span class="nb">read</span> number
+<span class="k">case</span> <span class="s2">&quot;</span><span class="nv">$number</span><span class="s2">&quot;</span> in
+<span class="m">1</span><span class="o">)</span> <span class="nb">echo</span> <span class="nv">$number</span> is <span class="m">1</span> <span class="p">;;</span>
+<span class="m">2</span><span class="o">)</span> <span class="nb">echo</span> <span class="nv">$number</span> is <span class="m">2</span> <span class="p">;;</span>
+<span class="m">3</span><span class="o">)</span> <span class="nb">echo</span> <span class="nv">$number</span> is <span class="m">3</span> <span class="p">;;</span>
+*<span class="o">)</span> <span class="nb">echo</span> <span class="nv">$number</span> is not equals <span class="m">1</span> or <span class="m">2</span> or <span class="m">3</span> <span class="p">;;</span>
+<span class="k">esac</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1">#case.sh</span>
+<span class="nb">echo</span> <span class="s1">&#39;Enter your choice one|two|three&#39;</span>
+<span class="nb">read</span> inputStr
+<span class="k">case</span> <span class="nv">$inputStr</span> in
+one<span class="o">)</span> <span class="nb">echo</span> <span class="s1">&#39;Your choice is $inputStr&#39;</span> <span class="p">;;</span>
+two<span class="o">)</span> <span class="nb">echo</span> <span class="s1">&#39;Your choice is $inputStr&#39;</span> <span class="p">;;</span>
+three<span class="o">)</span> <span class="nb">echo</span> <span class="s1">&#39;Your choice is $inputStr&#39;</span> <span class="p">;;</span>
+*<span class="o">)</span> <span class="nb">echo</span> <span class="s1">&#39;Usage is [one|two|three]&#39;</span>
+<span class="k">esac</span>
+</code></pre></div>
+
+<h6>for</h6>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1">#for.sh</span>
+<span class="c1">#Using for to read the user of this linux system.</span>
+<span class="nv">user</span><span class="o">=</span><span class="sb">`</span>/bin/cut -d <span class="s2">&quot;:&quot;</span> -f1 /etc/passwd <span class="p">|</span> /bin/sort<span class="sb">`</span>
+<span class="nb">echo</span> <span class="s2">&quot;The following is your linux system&#39;s user:&quot;</span>
+<span class="k">for</span> username in <span class="nv">$user</span>
+<span class="k">do</span>
+<span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$username</span><span class="s2">&quot;</span>
+<span class="k">done</span>
+</code></pre></div>
+
+<h6>while</h6>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1">#while.sh</span>
+<span class="nv">num</span><span class="o">=</span><span class="m">0</span>
+<span class="k">while</span> <span class="o">[</span> <span class="nv">$num</span> -lt <span class="m">10</span> <span class="o">]</span> <span class="p">;</span>
+<span class="k">do</span>
+<span class="nb">echo</span> <span class="nv">$num</span>
+<span class="nb">let</span> <span class="nv">num</span><span class="o">+=</span><span class="m">1</span>
+<span class="k">done</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1">#while.sh</span>
+<span class="nv">sum</span><span class="o">=</span><span class="m">0</span>
+<span class="k">while</span> <span class="o">[</span> <span class="nv">$sum</span> -lt <span class="m">4</span> <span class="o">]</span>
+<span class="k">do</span>
+<span class="nv">sum</span><span class="o">=</span><span class="sb">`</span>expr <span class="nv">$sum</span> + <span class="m">1</span><span class="sb">`</span>
+/usr/sbin/useradd user<span class="nv">$sum</span>
+<span class="nb">echo</span> <span class="s1">&#39;123456&#39;</span> <span class="p">|</span> passwd --stdin user<span class="nv">$sum</span>
+<span class="k">done</span>
+</code></pre></div>
+
+<h6>select</h6>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1">#select.sh</span>
+<span class="nv">PS3</span><span class="o">=</span><span class="s1">&#39;---&gt;&#39;</span>
+<span class="k">select</span> cmd in <span class="s1">&#39;ls -l&#39;</span> <span class="s1">&#39;pwd&#39;</span> <span class="s1">&#39;date&#39;</span> <span class="s1">&#39;df -v&#39;</span>
+<span class="k">do</span> 
+<span class="nv">$cmd</span>
+<span class="nb">break</span>
+<span class="k">done</span>
+</code></pre></div>
+
+<h6>break</h6>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1">#break.sh</span>
+<span class="k">while</span> :
+<span class="k">do</span>
+<span class="nb">read</span> cmd
+<span class="k">case</span> <span class="nv">$cmd</span> in 
+<span class="o">[</span>Qq<span class="o">]</span><span class="p">|</span><span class="o">[</span>Qq<span class="o">][</span>Uu<span class="o">][</span>Ii<span class="o">][</span>Tt<span class="o">]</span>
+<span class="nb">break</span> <span class="p">;;</span>
+*<span class="o">)</span> <span class="nv">$cmd</span> <span class="p">;;</span>
+<span class="k">esac</span>
+<span class="k">done</span>
+</code></pre></div>
+
+<h6>continue</h6>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1">#continue.sh</span>
+<span class="k">for</span> file in <span class="m">1</span> exist.txt <span class="m">3</span> q.txt
+<span class="k">do</span>
+<span class="k">if</span> <span class="o">[</span> ! -f <span class="s2">&quot;</span><span class="nv">$file</span><span class="s2">&quot;</span> <span class="o">]</span>
+<span class="k">then</span>
+<span class="nb">echo</span> <span class="s2">&quot;error </span><span class="nv">$file</span><span class="s2"> is not a file&quot;</span>
+<span class="k">continue</span>
+<span class="k">fi</span>
+<span class="nb">echo</span> <span class="s2">&quot;this is </span><span class="nv">$file</span><span class="s2"> !!&quot;</span>
+<span class="k">done</span>
+</code></pre></div>
+
+<h6>shift</h6>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1">#shift.sh</span>
+<span class="k">until</span> <span class="o">[</span> <span class="nv">$#</span> -eq o <span class="o">]</span>
+<span class="k">do</span>
+<span class="nb">echo</span> <span class="s2">&quot;first param is </span><span class="nv">$1</span><span class="s2">, param num is </span><span class="nv">$#</span><span class="s2">&quot;</span>
+<span class="nb">shift</span>
+<span class="k">done</span>
+<span class="c1"># bash shift.sh 1 2 3 4</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1">#shift.sh</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$#</span> -le <span class="m">0</span> <span class="o">]</span>
+<span class="k">then</span>
+<span class="nb">echo</span> <span class="s1">&#39;Not enough parameters&#39;</span>
+<span class="nb">exit</span> <span class="m">1</span>
+<span class="k">fi</span>
+<span class="nv">sum</span><span class="o">=</span><span class="m">0</span>
+<span class="k">while</span> <span class="o">[</span> <span class="nv">$#</span> -gt <span class="m">0</span> <span class="o">]</span>
+<span class="k">do</span> 
+<span class="nv">sum</span><span class="o">=</span><span class="sb">`</span>expr <span class="nv">$sum</span> + <span class="nv">$1</span><span class="sb">`</span>
+<span class="nb">shift</span>
+<span class="k">done</span>
+<span class="nb">echo</span> <span class="nv">$sum</span>
+</code></pre></div>
+
+<h5>函数</h5>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1">#function.sh</span>
+<span class="c1">#step one : define a function</span>
+<span class="c1">#step two : run a function</span>
+selfFunction<span class="o">(){</span>
+<span class="nb">echo</span> <span class="s1">&#39;this is the shell function ! !&#39;</span>
+<span class="o">}</span>
+selfFunction
+</code></pre></div>
+
+<hr>
+<h5>Tips</h5>
+<ol>
+<li><code>echo $?</code>： 查看上个shell命令的返回状态，0为正确执行，否则为异常状态。</li>
+</ol></div>
+	<hr>
+	<h2>Comments</h2>
+</div>
+		</div>
+	</div> 	<!-- <hr> -->
+</div> <!-- /container -->
+<footer class="aw-footer bg-danger">
+	<div class="container"> <!-- footer -->
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1">
+				<div class="row">
+					<div class="col-md-3">
+						<h4>Navigation</h4>
+						<ul class="list-unstyled my-list-style">
+							<li><a href="">mamimamihoo</a></li>
+							<li><a href="/pages/guan-yu.html"><i class="fa fa-关于 "></i> 关于</a></li>
+							<li><a href="/pages/lian-xi.html"><i class="fa fa-联系 "></i> 联系</a></li>
+						</ul>
+					</div>
+					<div class="col-md-3">
+						<h4>Author</h4>
+						<ul class="list-unstyled my-list-style">
+							<li><a href="#">You can add links in your config file</a></li>
+							<li><a href="#">Another social link</a></li>
+						</ul>
+					</div>
+					<div class="col-md-3">
+						<h4>Categories</h4>
+						<ul class="list-unstyled my-list-style">
+							<li><a href="/category/home.html">Home (3)</a></li>
+						</ul>
+					</div>
+					<div class="col-md-3">
+						<h4>Links</h4>
+						<ul class="list-unstyled my-list-style">
+							<li><a href="https://getpelican.com/">Pelican</a></li>
+							<li><a href="https://www.python.org/">Python.org</a></li>
+							<li><a href="https://palletsprojects.com/p/jinja/">Jinja2</a></li>
+							<li><a href="#">You can modify those links in your config file</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+<div class="container">
+	<div class="row">
+		<div class="col-md-12 text-center center-block aw-bottom">
+			<p>&copy; Joker 2016</p>
+			<p>Powered by Pelican</p>
+		</div>
+	</div>
+</div>
+<!-- JavaScript -->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+	$("div.collapseheader").click(function () {
+		$header = $(this).children("span").first();
+		$codearea = $(this).children(".input_area");
+		$codearea.slideToggle(500, function () {
+			$header.text(function () {
+				return $codearea.is(":visible") ? "Collapse Code" : "Expand Code";
+			});
+		});
+	});
+});
+</script>
+</body>
+</html>

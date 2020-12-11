@@ -2,7 +2,7 @@
 <html lang="zh-cn">
 <head>
 	<meta charset="utf-8">
-	<title>mamimamihoo <small>Joker lau</small></title>
+	<title>mamimamihoo <small>Joker</small></title>
 	<meta name="description" content="Coding, scientific development, finance, data analysis, visualization, statistics, and machine learning">
 	<meta name="author" content="Joker">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,75 +27,42 @@
         
         
 <div class="article" itemscope itemtype="http://schema.org/BlogPosting">
-	<a href="/shellming-ling-jian-shu.html">
-		<h2 itemprop="name headline">SHELL命令简述</h2>
+	<a href="/shell.html">
+		<h2 itemprop="name headline">shell</h2>
 	</a>
 	<time datetime="2020-12-11T11:21:00+08:00" itemprop="datePublished">周五 11 十二月 2020</time>
 	&nbsp;—&nbsp;
 	<span itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-		<span itemprop="name">Joker lau</span>
+		<span itemprop="name">Joker</span>
 	</span>
-	<div class="summary"><p>the art of command lines!</p></div>
+	<div class="summary"><h5>定义变量</h5>
+<h6>declare</h6>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1">#declare.sh</span>
+<span class="nb">declare</span> -i <span class="nv">a</span><span class="o">=</span><span class="m">1</span>
+<span class="nb">declare</span> -i <span class="nv">b</span><span class="o">=</span><span class="m">2</span>
+<span class="nb">declare</span> -i <span class="nv">c</span><span class="o">=</span><span class="m">3</span>
+<span class="nb">declare</span> -i <span class="nv">d</span><span class="o">=</span><span class="m">4</span>
+<span class="nb">echo</span> <span class="s2">&quot;the result is --&gt; </span><span class="nv">$a</span><span class="s2">*</span><span class="nv">$b</span><span class="s2">-</span><span class="nv">$c</span><span class="s2">+</span><span class="nv">$d</span><span class="s2">&quot;</span>
+<span class="nb">declare</span> -i f
+<span class="nv">f</span><span class="o">=</span><span class="nv">$a</span>*<span class="nv">$b</span>-<span class="nv">$c</span>+<span class="nv">$d</span>
+<span class="nb">echo</span> <span class="s2">&quot;the result is --&gt; </span><span class="nv">$f</span><span class="s2">&quot;</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="c1"># define a array</span>
+<span class="nb">declare</span> -a <span class="nv">array</span><span class="o">=(</span><span class="m">1 …</span></code></pre></div></div>
 	Category:
 	<span itemprop="articleSection">
-		<a href="/category/script.html" rel="category">Script</a>
+		<a href="/category/misc.html" rel="category">misc</a>
 	</span>
 	Tags:
- 
-	<span itemprop="keywords">
-		<a href="/tag/reading.html" rel="tag">reading</a>
-	</span>
-</div>
-<hr>
-        
-<div class="article" itemscope itemtype="http://schema.org/BlogPosting">
-	<a href="/pelicanda-jian.html">
-		<h2 itemprop="name headline">pelican搭建</h2>
-	</a>
-	<time datetime="2020-11-20T16:21:00+08:00" itemprop="datePublished">周五 20 十一月 2020</time>
-	&nbsp;—&nbsp;
-	<span itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-		<span itemprop="name">Joker lau</span>
-	</span>
-	<div class="summary"><p>使用pelican搭建个人主页</p></div>
-	Category:
-	<span itemprop="articleSection">
-		<a href="/category/home.html" rel="category">Home</a>
-	</span>
-	Tags:
- 
-	<span itemprop="keywords">
-		<a href="/tag/reading.html" rel="tag">reading</a>
-	</span>
-</div>
-<hr>
-        
-<div class="article" itemscope itemtype="http://schema.org/BlogPosting">
-	<a href="/welcome.html">
-		<h2 itemprop="name headline">Welcome</h2>
-	</a>
-	<time datetime="2020-11-19T10:21:00+08:00" itemprop="datePublished">周四 19 十一月 2020</time>
-	&nbsp;—&nbsp;
-	<span itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-		<span itemprop="name">Joker lau</span>
-	</span>
-	<div class="summary"><p>Welcome</p></div>
-	Category:
-	<span itemprop="articleSection">
-		<a href="/category/home.html" rel="category">Home</a>
-	</span>
-	Tags:
- 
-	<span itemprop="keywords">
-		<a href="/tag/reading.html" rel="tag">reading</a>
-	</span>
 </div>
 <hr>
  <div class="pagination">
 <ul>
     <li class="prev disabled"><a href="#">&larr; Previous</a></li>
 
-    <li class="active"><a href="/author/joker-lau.html">1</a></li>
+    <li class="active"><a href="/author/joker.html">1</a></li>
 
     <li class="next disabled"><a href="#">&rarr; Next</a></li>
 
@@ -127,7 +94,7 @@
 						<h4>Categories</h4>
 						<ul class="list-unstyled my-list-style">
 							<li><a href="/category/home.html">Home (2)</a></li>
-							<li><a href="/category/script.html">Script (1)</a></li>
+							<li><a href="/category/misc.html">misc (1)</a></li>
 						</ul>
 					</div>
 					<div class="col-md-3">
