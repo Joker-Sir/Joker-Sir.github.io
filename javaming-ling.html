@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="utf-8">
+	<title>java命令 — mamimamihoo</title>
+	<meta name="description" content="Title: java命令; Date: 2021-01-05; Author: Joker lau">
+	<meta name="author" content="Joker">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+	<!--[if lt IE 9]>
+		<script src="/theme/html5.js"></script>
+		<![endif]-->
+	<link href="/theme/css/ipython.css" rel="stylesheet">
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/simplex/bootstrap.min.css" rel="stylesheet">
+	<link href="/theme/css/local.css" rel="stylesheet">
+	<link href="/theme/css/pygments.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+	<div class="page-header">
+		<h1><a href="/">mamimamihoo</a>
+			<br>	</div>
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+<div class="article" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="text-center article-header">
+		<h1 itemprop="name headline" class="article-title">java命令</h1>
+		<span itemprop="author" itemscope itemtype="http://schema.org/Person">
+			<h4 itemprop="name">Joker lau</h4>
+		</span>
+		<time datetime="2021-01-05T17:21:00+08:00" itemprop="datePublished">周二 05 一月 2021</time>
+	</div>
+	<div>
+		Category:
+		<span itemprop="articleSection">
+			<a href="/category/home.html" rel="category">Home</a>
+		</span>
+	</div>
+ 
+	<div>
+		Tags:
+		<span itemprop="keywords">
+			<a href="/tag/reading.html" rel="tag">reading</a>
+		</span>
+	</div>
+	<div itemprop="articleBody" class="article-body"><h4>JAVA Command</h4>
+<h5>概要</h5>
+<p><code>java [options] -jar filename [args]</code></p>
+<p><code>javaw [options] -jar filename [args]</code></p>
+<ul>
+<li>options : 空格分隔的命令选项</li>
+<li>filename : 要使用JAR的名称，只能用<code>-jar</code></li>
+<li>args : 传递给<code>main()</code>的参数</li>
+</ul>
+<h5>描述</h5>
+<p>此命令开启一个java应用。原理是开启一个java运行环境，加载指定类，然后调用<code>main()</code>方法，这个方法必须声明为<code>public</code>和<code>static</code>，没有返回值，接受<code>string</code>类型的数组为参数。</p>
+<p><code>public static void main(String[] args)</code></p>
+<p><code>javaw</code>和<code>java</code>命令一样，除了<code>javaw</code>没有控制台窗口显示，当然发布失败时会显示异常信息对话框。</p>
+<p>更多见参考。</p>
+<h5>选项（以下节选部分）</h5>
+<p><code>java</code>命令支持的选项可分为以下几类：</p>
+<blockquote>
+<p>了解选项过时或者移除的动态可以查看参考文档。</p>
+<p>Boolean options用来开启和禁止某些特性。这些选项不需要参数，例如，开启<code>-XX:+OptionName</code>，禁止<code>-XX:-OptionName</code>。</p>
+<p>对于需要参数的选项，这个参数需要用空格或者<code>:</code>或者<code>=</code>分隔或者直接跟在后面（取决于具体的options）。想要指定大小参数可参考<code>8g 8192m 8388608k 8589934592</code>。百分比使用0-1的数字。</p>
+</blockquote>
+<h6>1.标准选项</h6>
+<blockquote>
+<p>标准选项保证被jvm实现。通常用来定义一般行为，例如检查JRE的版本、设置class的路径、开启详细输出等。</p>
+</blockquote>
+<ul>
+<li><code>-agentlib:libname[=options]</code></li>
+</ul>
+<p>加载指定的本地代理库，在名称后指定逗号分隔的一系列选项。例如：<code>-agentlib:foo</code>jvm试图加载在<code>PATH</code>系统变量中名称为<code>foo.dll</code>的本地库。</p>
+<ul>
+<li><code>-agentpath:pathname[=options]</code></li>
+</ul>
+<p>通过绝对路径加载本地代理库。</p>
+<ul>
+<li><code>-client</code></li>
+</ul>
+<p>选择<code>Java HotSpot Client VM</code>，JDK64位版本现在忽略这个选项，使用Server JVM。</p>
+<ul>
+<li><code>-server</code></li>
+</ul>
+<p>选择<code>Java HotSpot Server VM</code>，64位版本只支持Server JVM。</p>
+<ul>
+<li><code>-Dproperty=value</code></li>
+</ul>
+<p>设置系统属性值。如果值包含空格，需要用<code>""</code>包裹。</p>
+<ul>
+<li><code>java
+  -help
+  -?</code></li>
+</ul>
+<p>不需要启动jvm展示<code>java</code>命令的使用信息。</p>
+<ul>
+<li><code>-jar filename</code></li>
+</ul>
+<p>执行一个JAR文件项目。JAR必须包含定义了<code>main()</code>的manifest文件。</p>
+<ul>
+<li><code>-javaagent:jarpath[=options]</code></li>
+</ul>
+<p>加载指定的java程序语言代理。</p>
+<ul>
+<li><code>-showversion</code></li>
+</ul>
+<p>展示版本信息和应用执行情况。和<code>-version</code>一样，除了后者展示完版本信息后会退出虚拟机</p>
+<ul>
+<li><code>verbose:gc</code></li>
+</ul>
+<p>展示垃圾回收事件的信息。</p>
+<h6>2.非标准选项</h6>
+<blockquote>
+<p>非标准选项设计主要由<code>Java HotSpot Machine</code>实现，所以不保证所有的jvm的都支持，不同的jvm可能有不同的实现方式。这些选项以<code>-X</code>开始。</p>
+</blockquote>
+<ul>
+<li><code>-X</code></li>
+</ul>
+<p>展示所有可用的<code>-X</code>选项的帮助信息</p>
+<ul>
+<li><code>-Xbatch</code></li>
+</ul>
+<p>禁止后台编译，默认jvm会后台编译方法，编译完成后在翻译模式下执行方法。AKA <code>-XX:-BackgroundCompilation</code>。</p>
+<ul>
+<li><code>-Xcheck:jni</code></li>
+</ul>
+<p>为JNI函数执行额外的检查。使用时性能会下降。</p>
+<ul>
+<li><code>-Xcomp</code></li>
+</ul>
+<p>在方法第一次调用时强制编译。默认Client VM执行一千次翻译方法，Server VM执行一万次翻译方法调用来为有效的编译收集信息。指定这个选项会禁止翻译方法调用来提高编译性能。也可以用<code>-XX:CompileThreshold</code>来改变编译之前翻译方法调用的次数。</p>
+<ul>
+<li><code>-Xdiag</code></li>
+</ul>
+<p>显示额外的诊断信息。</p>
+<ul>
+<li><code>-Xfuture</code></li>
+</ul>
+<p>开启严格class文件格式检测，保证class文件格式标准的一致性。</p>
+<p>建议开发者使用，因为严格的检查以后的release中是默认的。</p>
+<ul>
+<li><code>-Xint</code></li>
+</ul>
+<p>只翻译模式下运行应用。禁止编译为本地代码，所有的字节码通过翻译器质性。在这个模式下（Just In Time）JIT编译提供的性能好处将不存在。</p>
+<ul>
+<li><code>-Xinternalversion</code></li>
+</ul>
+<p>展示更多详细的JVM版本信息，之后退出。</p>
+<ul>
+<li><code>-Xloggc:filename</code></li>
+</ul>
+<p>设置GC事件信息输出文件。重写<code>-verbose:gc</code>。</p>
+<ul>
+<li><code>-Xmaxjitcodesize=size</code></li>
+</ul>
+<p>设置JIT编译的代码缓存空间上限。默认最大值为240MB。</p>
+<ul>
+<li><code>-Xmixed</code></li>
+</ul>
+<p>通过翻译器执行所有的字节码，除了被编译成本地代码的热点方法。</p>
+<ul>
+<li><code>-Xmnsize</code></li>
+</ul>
+<p>设置年轻代的初始和最大值。如果数值太小，会频繁minor GC，如果数值太大，只有在Full GC时才执行，消耗较长时间。Oracle建议年轻代为总Heap空间的1/4到1/2之间。同样的，<code>-XX:NewSize</code>设置初始化空间，<code>-XX:MaxNewSize</code>设置最大空间。</p>
+<ul>
+<li><code>-Xmssize</code></li>
+</ul>
+<p>设置堆的初始大小。必须大于1MB且是1024的倍数。如果不设置，初始大小为分配给老年代和年轻代空间的总和。</p>
+<ul>
+<li><code>-Xmxsize</code></li>
+</ul>
+<p>设置内存内配的最大空间。必须大于2MB且是1024的倍数。运行时默认值基于系统配置，对于服务部署，<code>-Xms</code>和<code>-Xmx</code>经常设置为相同。可参考文档。</p>
+<p><code>-XX:MaxHeapSize</code></p>
+<ul>
+<li><code>-Xnoclassgc</code></li>
+</ul>
+<p>禁止类的GC，可以节省GC时间，减少应用的中断。当指定这个参数时，class对象在GC时会认为存活，这会导致永久占用空间。使用不当会导致内存溢出异常。</p>
+<ul>
+<li><code>-Xprof</code></li>
+</ul>
+<p>分析运行的程序并把分析数据输出。作为工具在程序开发有用，并不推荐在生产系统使用。</p>
+<ul>
+<li><code>-Xshare:mode</code></li>
+</ul>
+<p>设置class对象共享（CDS）模式：</p>
+<ul>
+<li>auto : 尽可能使用cds，Java HotSpot 32-Bit Client VM 默认</li>
+<li>on : 需要使用cds, 如不能使用会打印错误信息</li>
+<li>off ：不使用cds，Java HotSpot 32-Bit Server VM, Java HotSpot 64-Bit VM</li>
+<li>
+<p>dump : 手动生成cds文件。</p>
+</li>
+<li>
+<p><code>-Xsssize</code></p>
+</li>
+</ul>
+<p>设置线程栈的大小。默认值取决于虚拟内存。等同于</p>
+<p><code>-XX:ThreadStackSize</code></p>
+<ul>
+<li><code>-Xverify:mode</code></li>
+</ul>
+<p>设置字节码验证模式。关闭验证会失去java提供的保护机制，可能导致一些问题。</p>
+<ul>
+<li>remote ： 验证所有非启动类加载器加载的字节码，默认值。</li>
+<li>all : 开启验证所有的字节码。</li>
+<li>none : 禁止验证， 不支持。</li>
+</ul>
+<h6>3.高级运行时候选项</h6>
+<blockquote>
+<p>高级选项不推荐随便使用。这些开发选项用来调整jvm操作的指定区域。操作一般可能有系统要求，需要系统配置参数的访问权限。实现方式取决于jvm本身。这些选项以<code>-XX</code>开始。</p>
+</blockquote>
+<ul>
+<li><code>-XX:+DisableAttachMechanism</code></li>
+</ul>
+<p>开启改选项禁止工具连接到jvm。默认该选项是关闭的，意味着连接机制是开放的，可以使用例如<code>jcmd</code>,<code>jstack</code>,<code>jmap</code>等工具。</p>
+<ul>
+<li><code>-XX:ErrorFile=filename</code></li>
+</ul>
+<p>指定当不可恢复的错误发生时错误信息输出的文件和路径。默认，此文件在当前工作目录下创建，名称为<code>hs_err_pid.log。pid是引起错误的进程标识符。如果在指定目录不能创建，会在操作系统的临时目录下创建。</code></p>
+<ul>
+<li><code>-XX:+FlightRecorder</code></li>
+</ul>
+<p>在应用运行期间可以使用JFR（java flight recorder）。这是一个商业特性与<code>-XX:UnlockCommercialFeatures</code>选项一起使用。即使没有使用该选项，也可以用jcmd诊断命令使用JFR。</p>
+<ul>
+<li><code>-XX:-FlightRecorder</code></li>
+</ul>
+<p>在应用运行期间禁止JFR。</p>
+<ul>
+<li><code>-XX:MaxDirectMemorySize=size</code></li>
+</ul>
+<p>设置New I/O的最大直接缓存分配空间。默认是0，即意味着jvm自动分配NIO直接缓存。  </p>
+<ul>
+<li><code>-XX:NativeMemoryTracking=mode</code></li>
+</ul>
+<p>设置JVM本地内存使用情况跟踪模式。</p>
+<ul>
+<li>
+<p>off ： 不跟踪JVM本地内存使用情况，默认选项。</p>
+</li>
+<li>
+<p>summary : 只跟踪JVM子系统的内存使用，例如java堆，class，code和线程。</p>
+</li>
+<li>
+<p>detail ： 除了跟踪JVM子系统的内存使用还跟踪单独虚拟内存区域等的内存使用。</p>
+</li>
+<li>
+<p><code>-XX:ObjectAlignmentInBytes=alignment</code></p>
+</li>
+</ul>
+<p>设置java对象的内存队列大小。默认是8bytes。指定值必须是2的倍数且在8-256之间。此选项使使用大JAVA堆的压缩指针成为可能。堆大小限制计算<code>4GB * ObjectAlignmentInBytes</code></p>
+<p>当队列值增加时，对象之间未使用的空间也增加了。结果就是，你可能并不会受益于使用大Java堆的压缩指针。</p>
+<ul>
+<li><code>-XX:OnError=string</code></li>
+</ul>
+<p>设置当不可恢复的错误发生时执行的自定义命令，如果命令中包含空格需要用引号包起来。</p>
+<ul>
+<li><code>-XX:OnOutOfMemoryError=string</code></li>
+</ul>
+<p>设置当OutOfMemoryError异常第一次抛出时执行的自定义命令。如果命令中包含空格用引号抱起来。</p>
+<ul>
+<li><code>-XX:+PerfDataSaveToFile</code></li>
+</ul>
+<p>如果可能，当Java应用存在时保存Jstat二进制数据。数据保存在<code>hsperfdata_&lt;pid&gt;</code>文件中。用jstat展示文件里的性能数据：</p>
+<p><code>jstat -gc file:///&lt;path&gt;/hsperfdata_&lt;pid&gt;</code></p>
+<ul>
+<li><code>-XX:+PrintCommandLineFlags</code></li>
+</ul>
+<p>可以打印命令行中所选的JVM标识。了解JVM的参数很有用，例如：堆空间，所选的GC 收集器等。默认不打印。</p>
+<ul>
+<li><code>-XX:+PrintNMTStatistics</code></li>
+</ul>
+<p>当开启本地内存跟踪时（-XX:NativeMemoryTracking），在JVM退出时打印收集的本地内存追踪数据。默认不打印。</p>
+<ul>
+<li><code>-XX:+ResourceManagement</code></li>
+</ul>
+<p>开启在应用运行期间资源管理的使用。这是一个商业特性需要指定使用：<code>java -XX:+UnlockCommercialFeatures -XX:+ResourceManagement</code></p>
+<ul>
+<li><code>-XX:ResourceManagementSampleInterval=value(milliseconds)</code></li>
+</ul>
+<p>设置控制资源管理测量的采样间隔的参数，单位毫秒。只有开启ResouceManagement才有用。</p>
+<ul>
+<li><code>-XX:SharedArchiveFile=path</code></li>
+</ul>
+<p>指定CDS归档文件的名称和路径。</p>
+<ul>
+<li><code>-XX:+ShowMessageBoxOnError</code></li>
+</ul>
+<p>开启当JVM经历一个不可恢复的错误时展示一个对话框。这阻止JVM退出，保持进程活跃，使之可以用调试器去调查错误的原因。</p>
+<p>默认不开启。</p>
+<ul>
+<li><code>-XX:ThreadStackSize=size</code></li>
+</ul>
+<p>设置栈的大小，等同于<code>-Xss</code>。</p>
+<ul>
+<li><code>-XX:+TraceClassLoading</code></li>
+</ul>
+<p>开启类加载跟踪，默认不开启。</p>
+<ul>
+<li><code>-XX:+UnlockCommercialFeatures</code></li>
+</ul>
+<p>开启商业特性使用。默认不开启，一旦开启在进程中不可能禁止其使用，如果不使用此选项，在运行的JVM中仍然可以使用Jcmd命令解锁其商业特性。</p>
+<ul>
+<li><code>-XX:-UseCompressedOops</code></li>
+</ul>
+<p>禁止压缩指针的使用。默认开启，当Java堆空间小于32GB时使用压缩指针。当此选项开启时，对象引用表示为32位偏移量，而不是64位指针，这通常在运行Java堆大小小于32GB的应用程序时提高性能。此选项只在64位JVM中有效。</p>
+<ul>
+<li><code>-XX:+UseLargePages</code></li>
+</ul>
+<p>开启大页内存使用。</p>
+<ul>
+<li><code>-XX:+AllowUserSignalHandlers</code></li>
+</ul>
+<p>开启应用信号处理器的安装。</p>
+<h6>4.高级JIT编译选项</h6>
+<blockquote>
+<p>这些选项通过Java HotSpot VM控制动态JIT编译性能</p>
+</blockquote>
+<ul>
+<li><code>-XX:+AggressiveOpts</code></li>
+</ul>
+<p>允许使用积极的性能优化特性，期望在以后的Releases中成为默认。目前默认是禁止的。</p>
+<ul>
+<li><code>-XX:AllocateInstancePrefetchLines=lines</code></li>
+</ul>
+<p>设置要在实例分配指针之前预取的行数。默认是1。只有Java HotSpot Server VM支持这个选项。</p>
+<ul>
+<li><code>-XX:AllocatePrefetchDistance=size</code></li>
+</ul>
+<p>设置用于对象分配的预取距离的大小(以字节为单位)。只有Java HotSpot Server VM支持这个选项。</p>
+<ul>
+<li><code>-XX:+BackgroundCompilation</code></li>
+</ul>
+<p>开启后台编译，默认。</p>
+<ul>
+<li><code>-XX:CICompilerCount=threads</code></li>
+</ul>
+<p>设置编译用的编译线程数量。对于Server VM默认线程为2，Client VM线程为1。如果使用分层编译，它将缩放到核心的数量</p>
+<ul>
+<li><code>-XX:CodeCacheMinimumFreeSpace=size</code></li>
+</ul>
+<p>设置编译所需要的最小空闲空间。当小于最小空闲空间时，编译停止。默认此选项设置为500KB。</p>
+<ul>
+<li><code>-XX:CompileCommand=command,method,[option]</code></li>
+</ul>
+<p>指定一个命令在方法上执行。</p>
+<ul>
+<li><code>-XX:CompileCommandFile=filename</code></li>
+</ul>
+<p>设置JIT编译命令读取的文件。默认<code>.hotspot_compiler</code>文件用来存储JITcompiler执行的命令。</p>
+<ul>
+<li><code>-XX:CompileThreshold=invocations</code></li>
+</ul>
+<p>设置编译之前翻译方法调用的次数。默认在Server JVM中，JIT编译执行一万次翻译方法调用来为有效的编译收集信息；在Client JVM中默认是1500次。这个选项当分层编译开启时无效。<code>-XX:TieredCompilation</code>。 也可以完全禁止编译之前java方法的翻译，通过<code>-Xcomp</code>指定。</p>
+<ul>
+<li><code>-XX:+DoEscapeAnalysis</code></li>
+</ul>
+<p>启用转义分析的使用。</p>
+<ul>
+<li><code>-XX:InitialCodeCacheSize=size</code></li>
+</ul>
+<p>设置初始化代码缓存大小。</p>
+<ul>
+<li><code>-XX:+Inline</code></li>
+</ul>
+<p>开启方法内联，默认开启增强性能。</p>
+<ul>
+<li><code>-XX:InlineSmallCode=size</code></li>
+</ul>
+<p>设置内联编译方法的最大代码大小，只有比指定大小小的的编译方法才能被内联。默认设置为1000bytes。</p>
+<ul>
+<li><code>-XX:+LogCompilation</code></li>
+</ul>
+<p>开启编译活动日志输出到当前目录的<code>hotspot.log</code>文件。默认不开启。</p>
+<ul>
+<li><code>-XX:MaxInlineSize=size</code></li>
+</ul>
+<p>设置内联方法的最大字节码大小。默认最大字节码为35bytes。</p>
+<ul>
+<li><code>-XX:MaxNodeLimit=nodes</code></li>
+</ul>
+<p>设置在当个方法编译时使用的最大节点数量。默认为65000。</p>
+<ul>
+<li><code>-XX:+OptimizeStringConcat</code></li>
+</ul>
+<p>开启String连接操作的优化。默认开启。</p>
+<ul>
+<li><code>-XX:+PrintAssembly</code></li>
+</ul>
+<p>通过使用外部的<code>disassembler.so</code>库为字节码和本地方法法医汇编代码。这使您能够看到生成的代码，这可能有助于您诊断性能问题。</p>
+<ul>
+<li><code>-XX:+PrintCompilation</code></li>
+</ul>
+<p>通过每次编译方法时向控制台打印消息，使JVM的诊断输出更加详细。 这使您能够看到哪些方法实际上被编译。 默认情况下，此选项被禁用，诊断输出不打印。</p>
+<ul>
+<li><code>-XX:+PrintInlining</code></li>
+</ul>
+<p>允许打印内联决定。 这使您能够看到哪些方法被内联。</p>
+<ul>
+<li><code>-XX:-TieredCompilation</code></li>
+</ul>
+<p>禁止分层编译。默认允许，只有Java HotSpot Server VM支持。</p>
+<h6>5.高级服务能力选项</h6>
+<blockquote>
+<p>这些选项提供收集系统信息和执行广泛调试的能力</p>
+</blockquote>
+<ul>
+<li><code>-XX:+HeapDumpOnOutOfMemoryError</code></li>
+</ul>
+<p>当抛出<code>java.lang.outofmemoryerror</code>异常时，使用堆分析器（HPROF）将java堆转储到当前目录中的文件。也可以显示的指定文件名和路径<code>-XX:HeapDumpPath</code>。默认禁止。</p>
+<ul>
+<li><code>-XX:HeapDumpPath=path</code></li>
+</ul>
+<p>设置堆转储的文件名和路径。默认在当前目录，文件名为<code>java_pid.hprof</code>。例如：<code>-XX:HeapDumpPath=./java_pid%p.hprof</code>。</p>
+<ul>
+<li><code>-XX:LogFile=path</code></li>
+</ul>
+<p>设置日志数据的名称和路径。默认为当前目录，文件名为<code>hotspot.log</code>。</p>
+<ul>
+<li><code>-XX:+UnlockDiagnosticVMOptions</code></li>
+</ul>
+<p>解锁用于诊断JVM的选项。默认禁止，诊断选项不可用。</p>
+<h6>6.高级垃圾收集选项</h6>
+<blockquote>
+<p>这些选项控制Java HotSpot VM如何执行垃圾回收。</p>
+</blockquote>
+<ul>
+<li><code>-XX:ActiveProcessorCount=x</code></li>
+</ul>
+<p>重写VM用于计算用于各种操作（如垃圾收集）的线程池大小的CPU数量。通常从操作系统决定可用处理器的数量。这个标志在当docker容器中运行多个java进程时，用来划分cpu资源很有用。</p>
+<ul>
+<li><code>-XX:+AggressiveHeap</code></li>
+</ul>
+<p>启用java堆优化。基于计算机（RAM和CPU）的配置来优化配置参数，默认不开启。</p>
+<ul>
+<li><code>-XX:+CMSClassUnloadingEnabled</code></li>
+</ul>
+<p>在使用并发标记-清除(CMS)垃圾收集器时启用类卸载。默认开启。</p>
+<ul>
+<li><code>-XX:CMSInitiatingOccupancyFraction=percent</code></li>
+</ul>
+<p>设置启动CMS收集周期的老年代占用率（0到100）。 默认值设置为-1。</p>
+<ul>
+<li><code>-XX:+CMSScavengeBeforeRemark</code></li>
+</ul>
+<p>允许在CMS标记之前尝试清除。</p>
+<ul>
+<li><code>-XX:CMSTriggerRatio=percent</code></li>
+</ul>
+<p>设置在CMS收集周期开始之前分配的-XX：MinHeapFreeRatio指定的值的百分比(0到100)。</p>
+<ul>
+<li><code>-XX:ConcGCThreads-threads</code></li>
+</ul>
+<p>设置并发GC的线程数。默认取决于JVM可用的cpu数量。</p>
+<ul>
+<li><code>-XX:+DisableExplicitGC</code></li>
+</ul>
+<p>开启选项禁止调用System.gc()。默认是不开启的。</p>
+<ul>
+<li><code>-XX:+ExplicitGCInvokesConcurrent</code></li>
+</ul>
+<p>可以通过System.gc()调用并发GC。默认是禁止的。只能和<code>-XX:+UseConcMarkSweepGC</code>选项一起使用。</p>
+<ul>
+<li><code>-XX:G1HeapRegionSize=size</code></li>
+</ul>
+<p>设置使用垃圾优先(G1)收集器时Java堆被细分的区域的大小。取值在1MB和32MB之间。</p>
+<ul>
+<li><code>-XX:+G1PrintHeapRegions</code></li>
+</ul>
+<p>启用打印有关哪些区域被分配和哪些区域被G1收集器回收的信息,默认禁止。</p>
+<ul>
+<li><code>-XX:G1ReservePercent=percent</code></li>
+</ul>
+<p>设置作为假天花板保留堆（0到50）的百分比，以减少G1收集器晋升失败的可能性,默认设置为10%。</p>
+<ul>
+<li><code>-XX:InitialHeapSize=size</code></li>
+</ul>
+<p>设置内存分配池的初始化大小。这个值必须是0或者大于1MB的1024的倍数。运行时默认值取决于系统配置。可以查询文档<a href="http://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/index.html">Java SE HotSpot Virtual Machine Garbage Collection Tuning Guide</a>的<code>Ergonomics</code>部分。</p>
+<ul>
+<li><code>-XX:InitialSurvivorRatio=ratio</code></li>
+</ul>
+<p>设置吞吐量垃圾收集器使用的初始Survivor空间比。默认使用<code>-XX:UseParallerGC</code>和<code>-XX：UseParallerOldGCoptions</code>吞吐量垃圾回收器调整自适应大小，Survivor空间根据应用行为调整大小，从初始值开始。如果自适应禁止（使用<code>-XX:-UseAdaptiveSizePolicy</code>选项），那就应该使用<code>-XX:SurvivorRatio</code>选项来设置应用运行期间Survivor的空间大小。</p>
+<p>下面的公式可以用来计算基于年轻代（Y）的Survivor空间（S）初始空间，初始化Survivor空间比（R）为：
+  $$
+  S=Y/(R+2)
+  $$
+  方程中的2表示两个幸存者空间。 指定为初始幸存者空间比的值越大，初始幸存者空间大小就越小。默认值是8。</p>
+<ul>
+<li><code>-XX:IntiatingHeapOccupancyPercent=percent</code></li>
+</ul>
+<p>设置开启并发GC周期前堆占有率的百分比（0-100）。它被垃圾收集器使用，它根据整个堆的占用率触发并发GC周期，而不仅仅是一代(例如G1垃圾收集器)。默认初始化值为45%。</p>
+<ul>
+<li><code>-XX:MaxGCPauseMillis=time</code></li>
+</ul>
+<p>设置最大GC停顿时间目标值。这是一个浮动目标，JVM会尽可能达到这个值。默认没有这个限制。</p>
+<ul>
+<li><code>-XX:MaxHeapSize=size</code></li>
+</ul>
+<p>设置内存分配池的最大值。这个值必须是0或者大于2MB的1024的倍数。运行时默认值取决于系统配置。服务部署，<code>-XX:IniialHeapSize</code>和<code>-XX:MaxHeapSize</code>通常设为一样。 可以查询文档<a href="http://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/index.html">Java SE HotSpot Virtual Machine Garbage Collection Tuning Guide</a>的<code>Ergonomics</code>部分。aka <code>-Xmx</code>。</p>
+<ul>
+<li><code>-XX:MaxHeapFreeRatio=percent</code></li>
+</ul>
+<p>设置GC事件后自由堆空间（0到100）的最大允许百分比。 如果自由堆空间扩展到此值以上，则堆将被缩小。默认值为70%。</p>
+<ul>
+<li><code>-XX:MaxMetaspaceSize=size</code></li>
+</ul>
+<p>设置可分配给类元数据的本机内存的最大数量。 默认情况下，大小不受限制。 应用程序的元数据数量取决于应用程序本身、其他正在运行的应用程序以及系统上可用内存的数量。</p>
+<ul>
+<li><code>-XX:MaxNewSize=size</code></li>
+</ul>
+<p>设置年轻代堆空间的最大值。默认值是根据人体工程学设置的。</p>
+<ul>
+<li><code>-XX:MaxTenuringThreshold=threshold</code></li>
+</ul>
+<p>设置用于自适应GC大小调整的最大保持阈值。最大值为15。</p>
+<ul>
+<li><code>-XX:MetaspaceSize=size</code></li>
+</ul>
+<p>设置分配的类元数据空间的大小，该空间将在第一次超出时触发垃圾收集。默认值取决于平台。其垃圾回收的阈值根据元数据使用的数量来调整。</p>
+<ul>
+<li><code>-XX:MinHeapFreeRatio=percent</code></li>
+</ul>
+<p>GC事件后空闲堆空间的允许最小百分比。如果空闲堆空间比这个值小，堆空间会扩张。默认为40%。</p>
+<ul>
+<li><code>-XX:NewRatio=ratio</code></li>
+</ul>
+<p>设置年轻代与老年代之间的比率。默认为2。</p>
+<ul>
+<li><code>-XX:NewSize=size</code></li>
+</ul>
+<p>设置年轻代堆的初始化大小。堆的年轻代用于新生对象。GC在这个区域执行的频率比其他区域更高。如果年轻代太小，会执行大量的minor GC；如果年轻代太大，只有需要花费大量时间的Full GC会执行。Oracle推荐年轻代保持在整个堆空间的1/4到1/2。</p>
+<ul>
+<li><code>-XX:ParallelGCThreads=threads</code></li>
+</ul>
+<p>设置在年轻代和老年代并行垃圾回收的线程数量。默认值取决于JVM可用的CPU的数量。</p>
+<ul>
+<li><code>-XX:+ParallelRefProcEnabled</code></li>
+</ul>
+<p>开启并行应用处理。默认禁止。</p>
+<ul>
+<li><code>-XX:+PrintAdaptiveSizePolicy</code></li>
+</ul>
+<p>允许打印有关自适应生成大小的信息。默认禁止。</p>
+<ul>
+<li><code>-XX:+PrintGC</code></li>
+</ul>
+<p>允许打印每一次GC信息。默认禁止。</p>
+<ul>
+<li><code>-XX:+PrintGCApplicationConcurrentTime</code></li>
+</ul>
+<p>打印从上次停顿（例如GC停顿）开始花费的时间。默认禁止。</p>
+<ul>
+<li><code>-XX:+PrintGCApplicationStoppedTime</code></li>
+</ul>
+<p>打印停顿（例如GC停顿）持续的时间。默认不开启。</p>
+<ul>
+<li><code>-XX:+PrintGCDateStamps</code></li>
+</ul>
+<p>允许在每次GC打印日期戳。默认不开启。</p>
+<ul>
+<li><code>-XX:+PrintGCDetails</code></li>
+</ul>
+<p>允许打印每次GC的详细信息。默认不开启。</p>
+<ul>
+<li><code>-XX:+PrintGCTaskTimeStamps</code></li>
+</ul>
+<p>允许打印每次独立的GC工作线程任务时间戳。默认不开启。</p>
+<ul>
+<li><code>-XX:+PrintGCTimeStamps</code></li>
+</ul>
+<p>允许为每次GC打印时间戳。默认不开启。</p>
+<ul>
+<li><code>-XX:+PrintStringDeduplicationStatistics</code></li>
+</ul>
+<p>打印详细的去重复统计。</p>
+<ul>
+<li><code>-XX:+PrintTenuringDistribution</code></li>
+</ul>
+<p>允许打印固定年龄信息。例如</p>
+<p><code>shell
+  Desired survivor size 48286924 bytes, new threshold 10 (max 10)
+  - age 1: 28992024 bytes, 28992024 total
+  - age 2: 1366864 bytes, 30358888 total
+  - age 3: 1425912 bytes, 31784800 total
+  ...</code></p>
+<p>Age1对象是最年轻的Survivors（它们从之前的清除后创建，最近一次清除中存活，并从eden区移到Survivor区）。Age2对象从两次清理中存活（第二次清理时从一个Survivor复制到另一个survivor区）。以此类推。默认禁止。</p>
+<ul>
+<li><code>-XX:ScavengeBeforeFullGC</code></li>
+</ul>
+<p>允许每次Full GC之前年轻代GC。默认是开启的。Oracle推荐不要禁止。因为在Full GC之前进行年轻代的清理能减少可从老年代进入到年轻代对象的数量。</p>
+<ul>
+<li><code>-XX:SurvivorRatio=ratio</code></li>
+</ul>
+<p>设置eden区域Survivor区空间的比例。默认为8。</p>
+<ul>
+<li><code>-XX:TargetSurvivorRatio=percent</code></li>
+</ul>
+<p>设置在年轻代垃圾回收后所需要的Survivor空间大小百分比。默认是50%。</p>
+<ul>
+<li><code>-XX:TLABSize=size</code></li>
+</ul>
+<p>设置本地线程分配缓冲的初始化大小。如果选项为0，则JVM自动选择初始化值。</p>
+<ul>
+<li><code>-XX:+UseAdaptiveSizePolicy</code></li>
+</ul>
+<p>允许使用自适应生成大小。默认开启。</p>
+<ul>
+<li><code>-XX:+UseCMSInitiatingOccupancyOnly</code></li>
+</ul>
+<p>启用占用值作为启动CMS收集器的唯一标准，默认禁止。</p>
+<ul>
+<li><code>-XX:UseConcMarkSweepGC</code></li>
+</ul>
+<p>为老年代启用CMS垃圾收集器。当吞吐量垃圾收集器(-XX:+UseParallelGC)无法满足应用程序延迟需求时，Oracle建议使用cms垃圾收集器。G1垃圾收集器（-XX:+UseG1GC）是另一个可替代方案。默认是禁止的，收集器基于JVM的类型和配置自动选择。当这个选项开启时，<code>-XX:+UseParNewGC</code>选项自动设置，不应该禁止它。因为在JDK8中这个选项组合已经过时了。~~-XX:+UseConcMarkSweepGC -XX:-UseParNewGC`~~。</p>
+<ul>
+<li><code>-XX:+UseG1GC</code></li>
+</ul>
+<p>启动G1垃圾回收器。它是一种服务器风格的垃圾收集器，针对具有大量RAM的多处理器机器。它以较高的概率满足GC暂停时间目标，同时保持良好的吞吐量。对于需要大堆(大小约为6GB或更大)、GC延迟要求有限（稳定和可预测的暂停时间低于0.5秒）的应用程序，建议使用G1收集器。默认是禁止的，收集器基于JVM的类型和配置自动选择。</p>
+<ul>
+<li><code>-XX:+UseGCOverheadLimit</code></li>
+</ul>
+<p>启用一个策略，该策略限制了JVM在抛出内存错误异常之前在GC上花费的时间比例。默认开启。如果在垃圾收集中花费超过98%的时间而只有不到2%的堆空间回收，parallel GC会抛出内存错误异常。当堆较小时，此特性可用于防止应用程序长时间运行而进展甚微或毫无进展。</p>
+<ul>
+<li><code>-XX:+UseNUMA</code></li>
+</ul>
+<p>通过增加应用程序对较低延迟内存的使用，在具有非均匀内存体系结构(NUMA)的机器上实现应用程序的性能优化。默认禁止。且只有当<code>-XX:+UseParallelGC</code>时才有效。</p>
+<ul>
+<li><code>-XX:+UseParallelGC</code></li>
+</ul>
+<p>允许使用并行清除垃圾收集器（也称为吞吐量收集器）来通过利用多个处理器来提高应用程序的性能。默认是禁止的，收集器基于JVM的类型和配置自动选择。如果开启此选项，自动开启<code>-XX:UseParallelOldGC</code>选项，除非你显示的禁止。</p>
+<ul>
+<li><code>-XX:+UseParallelOldGC</code></li>
+</ul>
+<p>为Full GC启用并行垃圾回收器。默认不开启，可以使用<code>-XX:+UseParallelGC</code>自动开启。</p>
+<ul>
+<li><code>-XX:+UseParNewGC</code></li>
+</ul>
+<p>允许在年轻代并行多个线程进行垃圾回收。默认不开启。当使用<code>-XX:+UseConcMarkSweepGC</code>是自动开启。</p>
+<ul>
+<li><code>-XX:+UseSerialGC</code></li>
+</ul>
+<p>使用Serial垃圾回收器。对于不需要垃圾收集的任何特殊功能的小型和简单的应用程序来说，这通常是最好的选择。</p>
+<ul>
+<li><code>-XX:+UseStringDeduplication</code></li>
+</ul>
+<p>开启字符串去重。默认不开启。要使用这个选项，必须开启G1垃圾收集器。</p>
+<ul>
+<li><code>-XX:+UseTLAB</code></li>
+</ul>
+<p>启用在年轻一代空间中使用线程本地分配块(TLAB)，默认开启。</p>
+<h5>过时移除的选项</h5>
+<blockquote>
+<p>这些选项在之前的release中有，但是认为非必要。</p>
+</blockquote>
+<ul>
+<li><code>-XX:MaxPermSize=size</code></li>
+<li><code>-XX:PermSize=size</code></li>
+</ul>
+<h5>性能调优示例</h5>
+<blockquote>
+<p>下面的示例演示如何使用实验调优标志来优化吞吐量或提供较低的响应时间</p>
+</blockquote>
+<ol>
+<li>优化更高的吞吐量</li>
+</ol>
+<p><code>java -d64 -server -XX:+AggressiveOpts -XX:+UseLargePages -Xmn10g -Xms26g -Xmx26g</code></p>
+<ol>
+<li>优化更低的响应时间</li>
+</ol>
+<p><code>java -d64 -XX:+UseG1GC -Xms26g -Xmx26g -XX:MaxGCPauseMillis=500 -XX:+PrintGCTimesStamp</code></p>
+<h5>参考</h5>
+<ol>
+<li><a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/java.html">Javase8WindowsDoc</a></li>
+</ol></div>
+	<hr>
+	<h2>Comments</h2>
+	<a href="https://github.com/Joker-Sir/joker-sir.github.io/issues/new?title=i have a issue with article[java命令]">发起issues</a>
+</div>
+		</div>
+	</div> 	<!-- <hr> -->
+</div> <!-- /container -->
+<footer class="aw-footer bg-danger">
+	<div class="container"> <!-- footer -->
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1">
+				<div class="row">
+					<div class="col-md-3">
+						<h4>Navigation</h4>
+						<ul class="list-unstyled my-list-style">
+							<li><a href="">mamimamihoo</a></li>
+							<li><a href="/pages/guan-yu.html"><i class="fa fa-关于 "></i> 关于</a></li>
+							<li><a href="/pages/lian-xi.html"><i class="fa fa-联系 "></i> 联系</a></li>
+						</ul>
+					</div>
+					<div class="col-md-3">
+						<h4>Social</h4>
+						<ul class="list-unstyled my-list-style">
+							<li><a href="#">You can add links in your config file</a></li>
+							<li><a href="#">Another social link</a></li>
+						</ul>
+					</div>
+					<div class="col-md-3">
+						<h4>Categories</h4>
+						<ul class="list-unstyled my-list-style">
+							<li><a href="/category/home.html">Home (3)</a></li>
+							<li><a href="/category/script.html">Script (1)</a></li>
+						</ul>
+					</div>
+					<div class="col-md-3">
+						<h4>Links</h4>
+						<ul class="list-unstyled my-list-style">
+							<li><a href="https://getpelican.com/">Pelican</a></li>
+							<li><a href="https://www.python.org/">Python.org</a></li>
+							<li><a href="https://palletsprojects.com/p/jinja/">Jinja2</a></li>
+							<li><a href="#">You can modify those links in your config file</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+<div class="container">
+	<div class="row">
+		<div class="col-md-12 text-center center-block aw-bottom">
+			<p>&copy; Joker 2021</p>
+			<p>Powered by Pelican</p>
+		</div>
+	</div>
+</div>
+<!-- JavaScript -->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+	$("div.collapseheader").click(function () {
+		$header = $(this).children("span").first();
+		$codearea = $(this).children(".input_area");
+		$codearea.slideToggle(500, function () {
+			$header.text(function () {
+				return $codearea.is(":visible") ? "Collapse Code" : "Expand Code";
+			});
+		});
+	});
+});
+</script>
+<a href="https://github.com/Joker-Sir/joker-sir.github.io"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="images/forkme_right_darkblue.png" alt="Fork me on GitHub" /></a>
+</body>
+</html>
